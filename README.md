@@ -1,4 +1,7 @@
 # healthcheck
+
+[![prettier][prettier-image]][prettier-url]
+
 Node gRPC health check.
 
 ## get started
@@ -31,19 +34,22 @@ npm i @dadongicar/grpc-healthcheck
     const grpc = require('grpc')
     const server = require('@dadongicar/grpc-healthcheck')
     const client = new server.HealthClient(
-    'localhost:7000',
-    grpc.credentials.createInsecure()
+        'localhost:7000',
+        grpc.credentials.createInsecure()
     )
     const statusReq = new server.SetStatusRequest()
     statusReq.setService('message.service')
     statusReq.setStatus(server.ServingStatus.SERVING)
     client.setStatus(statusReq, (err, res) => {
-    if (err) throw err
-    const req = new server.HealthCheckRequest()
-    req.setService('message.service')
-    client.check(req, (err, ress) => {
         if (err) throw err
-        console.log('[HealthStatus]: ', ress.toObject())
-    })
+        const req = new server.HealthCheckRequest()
+        req.setService('message.service')
+        client.check(req, (err, ress) => {
+            if (err) throw err
+            console.log('[HealthStatus]: ', ress.toObject())
+        })
     })
     ```
+
+[prettier-image]: https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square
+[prettier-url]: https://github.com/prettier/prettier
