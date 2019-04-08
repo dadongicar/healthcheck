@@ -1,6 +1,6 @@
 {
   "name": "@dadongicar/grpc-healthcheck",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Node gRPC health check.",
   "scripts": {
     "proto": "node ./bin/proto.js",
